@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Accueil</title>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
+    <link href="../../src/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            #logo {
+                width: 20%;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+
+            #logo {
+                width: 10%;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <header>
+        <nav id="navig" class="navbar navbar-expand-md py-4">
+            <div class="container-fluid">
+                <img id="logo" src="../../src/images/Logo.png" />
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item  px-3">
+                            <a class="nav-link fw-bold" href="../../index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link fw-bold active" href="#">SQL Injection</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link fw-bold " href="../XSS/">XSS</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link fw-bold" href="../CRSF/">CSRF</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link fw-bold" href="../Fixation/">Fixation de session</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link fw-bold " href="../Accès/">Accès indirect non autorisé</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light mb-4">Injection SQL</h1>
+                    <p class="lead text-muted">
+                        La faille SQLi, abréviation de SQL Injection, soit injection SQL en français, est un groupe de méthodes d'exploitation de faille de sécurité d'une application interagissant avec une base de données. 
+                        Elle permet d'injecter dans la requête SQL en cours un morceau de requête non prévu par le système et pouvant en compromettre la sécurité. <br> Source : Wikipedia
+                    </p>
+                    <h3 class="fw-lighter mt-5 mb-4 text-decoration-underline">Comment fonctionne la demo ?</h3>
+                    <p class="lead text-muted"> Dans les deux versions la liste des identifiants et affichés afin de voir les utilisteurs disponoble. Vous trouverez deux champs afin de vous "connecter"
+                        , voici des idententifiants pour tester :<br>
+                        <samp>identifiant :</samp> root <br>
+                        <samp>mot de passe :</samp> 1234 <br>
+                        après avoir tester la concordance avec les logs dans la base de données les informations de cet utilisteur seront affichés
+                        Pour tester une injection je vous invite à essayer :
+                        :<br>
+                        <samp>identifiant :</samp> root <br>
+                        <samp>mot de passe :</samp> 'OR 1=1 OR 1=' <br>
+                    </p>
+
+                    <h5 class="fw-light mb-3 mt-3 text-decoration-underline">Dans la version non sécurisé ?</h5>
+                    <p class="lead text-muted">On intéroge la base tel quel sans traitement sur l'élément rentré ce qui permet toutes sortes d'injection.
+                    </p>
+
+                    <h5 class="fw-light mb-3 mt-3 text-decoration-underline">Dans la version sécurisé ?</h5>
+                    <p class="lead text-muted"> Pour chaque information rentrées on utilise : <br><samp>addslashes("texte à traiter")</samp><br> avant l'envoie à la base de données ce qui évitera les injections</p>
+                    <a href="unfixed.php" target="_blank" class="btn btn-danger my-2">Exemple non sécurisé</a>
+                    <a href="fixed.php" target="_blank" class="btn btn-success my-2">Exemple sécurisé</a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
